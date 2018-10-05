@@ -1,2 +1,2 @@
 # ScriptRaid
-This is a personnal project tp uderstand the raid in linux
+This is a personnal project to uderstand the raid in linux
