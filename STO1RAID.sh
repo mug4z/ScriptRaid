@@ -56,15 +56,14 @@ done
 
 
 if [[ $raid = "raid0" ]]; then
-  mdadmAfichage = mdadm -E /dev/sd[a-z]
- cat $mdadmAfichage | grep [(mdadm).*]
+  mdadmAfichage=$(mdadm -E /dev/sd[a-z])
+ cat $mdadmAfichage | grep [mdadm.*]
  echo Veuiller choisir le premier disque libre pour le RAID1
  read diskraid_1
  echo ----------
  echo Veuiller choisir le premier disque libre pour le RAID1
  read diskraid_2
- # Créer un périphérique RAID 0 nommé "md0" dans le dossier "dev"
- mdadm --create /dev/md0 -l=0 -n=2 /dev/"$diskraid_1"1 /dev/"$diskraid_2"1
+
 
 
  # Vérifier le niveau de RAID et les périphériques inclus
@@ -85,20 +84,21 @@ if [[ $raid = "raid0" ]]; then
  # Le système de fichiers devrait être monté maintenant. Vérifiez avec:
  df -H
 
+ # Créer un périphérique RAID 0 nommé "md0" dans le dossier "dev"
+ mdadm --create /dev/md0 -l=0 -n=2 /dev/"$diskraid_1"1 /dev/"$diskraid_2"1
+
  # Sauvegarde mdadm config dans son fichier de configuration.
  mdadm --verbose --detail --scan >> /etc/mdadm.confs
 fi
 
 if [[ $raid = "raid1" ]]; then
- mdadmAfichage = mdadm -E /dev/sd[a-z]
- cat $mdadmAfichage | grep [(mdadm).*]
+ mdadmAfichage=$(mdadm -E /dev/xvd[a-z] | grep [mdadm.*])
  echo Veuiller choisir le premier disque libre pour le RAID1
  read diskraid_1
  echo ----------
- echo Veuiller choisir le premier disque libre pour le RAID1
- read diskraid_
-  # Créer un périphérique RAID 0 nommé "md0" dans le dossier "dev"
-  mdadm --create /dev/md0 --l=1 -n=2 /dev/"$diskraid_1"1 /dev/"$diskraid_2"1
+ echo Veuiller choisir le deuxième disque libre pour le RAID1
+ read diskraid_2
+
 
 
   # Vérifier le niveau de RAID et les périphériques inclus
@@ -119,13 +119,16 @@ if [[ $raid = "raid1" ]]; then
   # Le système de fichiers devrait être monté maintenant. Vérifiez avec:
   df -H
 
+  # Créer un périphérique RAID 0 nommé "md0" dans le dossier "dev"
+  mdadm --create /dev/md0 --l=1 -n=2 /dev/"$diskraid_1"1 /dev/"$diskraid_2"1
+
   # Sauvegarde mdadm config dans son fichier de configuration.
   mdadm --verbose --detail --scan >> /etc/mdadm.confs
 fi
 
 if [[ $raid = "raid5" ]]; then
-  mdadmAfichage = mdadm -E /dev/sd[a-z]
-  cat $mdadmAfichage | grep [(mdadm).*]
+  mdadmAfichage=$(mdadm -E /dev/sd[a-z])
+  cat $mdadmAfichage | grep [mdadm.*]
   echo Veuiller indiquer le premier disque pour le raid5
   read disque1
   echo Maintenant le deuxième disque pour le raid5
@@ -152,13 +155,23 @@ if [[ $raid = "raid5" ]]; then
   df -H
 
   #Créer le raid5
-  mdadm --create /dev/md0 --level=5 -raid-devices=3 /dev/$disque1 /dev/$disque2 /dev/$disque3
+  mdadm --create /dev/md0 --level=5 --raid-devices=3 /dev/$disque1 /dev/$disque2 /dev/$disque3
   # Sauvegarde mdadm config dans son fichier de configuration.
   mdadm --verbose --detail --scan >> /etc/mdadm.confs
 
 fi
 
-if [[ $raid = "raid10"]]; then
+if [[ $raid = "raid10" ]]; then
+  mdadmAfichage=$(mdadm -E /dev/sd[a-z])
+  cat $mdadmAfichage | grep [mdadm.*]
+  echo Veuiller indiquer le premier disque pour le raid5
+  read disque1
+  echo Maintenant le deuxième disque pour le raid5
+  read disque2
+  echo Pour finir le dernier disque pour le raid5
+  read disque3
+  echo Dernier disque pour le raid10
+  read disque4
   # Vérifier le niveau de RAID et les périphériques inclus
   more /proc/mdstat
 
