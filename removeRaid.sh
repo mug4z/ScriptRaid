@@ -26,10 +26,11 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-#umount the
-umount /dev/md0
 
-mdadm --detail /dev/md0
+
+
+#umount /dev/md0
+umount /dev/md0
 
 # Stop the partition of raid device on certain os you can't remove because is already remove
 mdadm --stop /dev/md0
