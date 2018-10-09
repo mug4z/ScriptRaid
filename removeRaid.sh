@@ -26,14 +26,16 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+read -p "Séléectionner le md a supprimer : " md
 
-
+uuidmdo=$(blkid -s UUID -o value /dev/$md )
+sed -i '/^'$md'/d' /etc/fstab
 
 #umount /dev/md0
-umount /dev/md0
+umount /dev/$md
 
 # Stop the partition of raid device on certain os you can't remove because is already remove
-mdadm --stop /dev/md0
+mdadm --stop /dev/$md
 
 #Remove superblock on disk
-mdadm --zero-superblock /dev/sda
+mdadm --zero-superblock /dev/sd[b-c]

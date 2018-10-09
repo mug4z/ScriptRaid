@@ -93,5 +93,7 @@ mount /dev/md0 /ebs
 # Le système de fichiers devrait être monté maintenant. Vérifiez avec:
 df -H
 
+nano /etc/fstab
+
 # Sauvegarde mdadm config dans son fichier de configuration.
 mdadm --verbose --detail --scan >> /etc/mdadm.confs
