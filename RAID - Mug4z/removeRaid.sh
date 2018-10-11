@@ -29,7 +29,7 @@ fi
 read -p "Séléectionner le md a supprimer : " md
 
 uuidmdo=$(blkid -s UUID -o value /dev/$md )
-sed -i '/^'$md'/d' /etc/fstab
+sed -i '/^'$uuidmdo'/d' /etc/fstab
 
 #umount /dev/md0
 umount /dev/$md
