@@ -10,6 +10,7 @@
 
  Author         : Timothee Frily
                   Michel Cruz
+                  Elie Platrier
 
  Purpose        : The user can create RAID 1
 
