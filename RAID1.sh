@@ -2,25 +2,19 @@
 
 '-----------------------------------------------------------------------
  -----------------------------------------------------------------------
- Project           : STO1 Raid
 
- Program name      : RAID1.sh
+ Project        : STO 1 - RAID
+ Name           : RAID1.sh
+ Version        : 1.0
+ Date created   : 08/10/2018
 
- Program version   : 1.0
+ Author         : Timothee Frily
+                  Michel Cruz
 
- Author            : Timothee Frily
+ Purpose        : The user can create RAID 1
 
- Date created      : 08/10/2018
-
- Purpose           : The user can create raid1
-
- Revision History  :
-
- Date           Author         Revision (Date in DDMMYYY format)
- 08/10/2018   Timothee       Create the script
-
------------------------------------------------------------------------
------------------------------------------------------------------------'
+ ----------------------------------------------------------------------
+ ----------------------------------------------------------------------'
 
 #Bien reçue
 
