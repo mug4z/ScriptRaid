@@ -26,8 +26,9 @@ lsblk
 read -p "2. Sélectionnez le RAID a supprimé (ex.: md127) : " md
 
 echo 3. Suppression de RAID
-UUIDmd=$(blkid -s UUID -o value /dev/$md)
-sed -i '/^'$UUIDmd'/d' /etc/fstab
+UUIDmd=$(blkid -s UUID -o value /dev/md127)
+# work around supprime la dernière ligne sed '$d' /etc/fstab
+sed -i '"/^$UUIDmd/d"' /etc/fstab
 
 echo 4. Démontage du RAID
 umount /dev/$md
@@ -39,7 +40,7 @@ echo 5. Confirmation de la suppression du RAID
 mdadm --remove /dev/md127
 
 echo 6. Suppression des SuperBlocks sur les diques
-mdadm --zero-superblock /dev/xvdh /dev/xvdf
+mdadm --zero-superblock /dev/xvdf /dev/xvdi
 
 echo 7. Vérification de la suppression des SuperBlocks
 mdadm -E /dev/xvdh /dev/xvdf
