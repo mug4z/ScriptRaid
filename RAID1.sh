@@ -6,7 +6,7 @@
  Project        : STO 1 - RAID
  Name           : RAID1.sh
  Version        : 1.0
- Date created   : 08/10/2018
+ Date created   : 11.10.2018
 
  Author         : Timothee Frily
                   Michel Cruz
