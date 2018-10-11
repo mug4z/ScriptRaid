@@ -58,6 +58,7 @@ mkdir -p /mnt/raid1
 # Monter le RAID dans le dossier "/ebs"
 mount /dev/md0 /mnt/raid1
 
+mountpoint=/mnt/raid1
 uuidmdo=$(blkid -s UUID -o value /dev/md0 )
 
 tofstab="UUID=$uuidmdo $mountpoint ext4 defaults 0 0"

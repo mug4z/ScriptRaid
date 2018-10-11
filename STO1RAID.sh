@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Salut michelle
 : '
 ***********************************************************************
 * Project           : STO1 Raid
@@ -40,7 +41,7 @@ fi
 
 echo "Please choose the raid you need"
 
-select raid in raid0 raid1 raid5 raid6
+select raid in raid0 raid1 raid5 raid6 raid10
 do
     case $raid in
       raid0|raid1|raid5|raid6)
@@ -195,7 +196,6 @@ if [[ $raid = "raid5" ]]; then
   mdadm --verbose --detail --scan >> /etc/mdadm.confs
 
 fi
-
 
 if [[ $raid = "raid10" ]]; then
   mdadmAfichage=$(mdadm -E /dev/sd[a-z])
