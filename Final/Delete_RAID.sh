@@ -27,7 +27,7 @@ read -p "2. Sélectionnez le RAID a supprimé (ex.: md127) : " md
 
 echo 3. Suppression de RAID
 UUIDmd=$(blkid -s UUID -o value /dev/$md)
-sed -i '/^'$UUIDmd'/d' /etc/fstab
+sed -i "/${UUIDmd}/d" /etc/fstab
 
 echo 4. Démontage du RAID
 umount /dev/$md
