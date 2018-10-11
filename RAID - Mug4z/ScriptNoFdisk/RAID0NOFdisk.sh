@@ -43,13 +43,6 @@ read diskraid_2
 # Créer un périphérique RAID 0 nommé "md0" dans le dossier "dev"
 mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/"$diskraid_1" /dev/"$diskraid_2"
 
-
-# Vérifier le niveau de RAID et les périphériques inclus
-#more /proc/mdstat
-
-# Vérifier le niveau de RAID, le nombre de disques durs actifs
-#mdadm --detail /dev/md0
-
 # Formater le système de fichiers Linux du RAID
 mkfs -t ext4 /dev/md0
 
