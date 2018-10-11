@@ -1,13 +1,24 @@
-#---------------------------------------------#
-#---------------------------------------------#
-# Auteur        :   Michel Cruz
-# Goal          :   Mount RAID 0
-# Version       :   1.0
+#!/bin/bash
+
+# ----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 #
-# Precondition  :   Root
-#                   Package "mdadm" test
-#---------------------------------------------#
-#---------------------------------------------#
+# Project        : STO 1 - RAID
+# Name           : RAID1.sh
+# Version        : 1.0
+# Date created   : 11.10.2018
+#
+# Author         : Timothee Frily
+#                  Michel Cruz
+#                  Elie Platrier
+#
+# Purpose        : The user can create RAID 1
+#
+# Precondition   : Autorisation Root
+#                  Package mdadm
+#
+# ----------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
 # Afficher les disques durs ajoutés au système
 lsblk

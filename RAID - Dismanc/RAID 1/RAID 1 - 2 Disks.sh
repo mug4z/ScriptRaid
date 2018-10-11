@@ -41,6 +41,14 @@ mkdir -p /ebs
 # Monter le RAID dans le dossier "/ebs"
 mount /dev/md0 /ebs
 
+# Récupération du PATH du RAID et de son UUID
+MountPoint=/mnt/RAID1
+UUIDmd0=$(blkid -s UUID -o value /dev/md0)
+
+# Afin de rendre le point de montage persistant
+tofstab="UUID=$UUIDmd0 $MountPoint ext4 defaults,nofail 0 2"
+echo $tofstab >> /etc/fstab
+
 # Le système de fichiers devrait être monté maintenant. Vérifiez avec:
 df -H
 
