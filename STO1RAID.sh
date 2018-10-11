@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
+<<<<<<< HEAD
 # Salut MICHEL
+=======
+# Salut michelle
+>>>>>>> 601673e59e7aae1ef8eaac7d957bff21f611ca97
 : '
 ***********************************************************************
 * Project           : STO1 Raid
