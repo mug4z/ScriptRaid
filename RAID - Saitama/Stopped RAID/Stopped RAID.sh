@@ -1,13 +1,19 @@
+'#---------------------------------------------#
 #---------------------------------------------#
+# Informations Générales
 #---------------------------------------------#
-# Auteur        :   Michel Cruz
-# Goal          :   Stopped a RAID
+# Auteur        :   Elie Platrier
+# Sources       :   Michel Cruz
+# Objectif      :   Démontage automatisé des RAID
 # Version       :   1.0
-#
-# Precondition  :   Root
-#                   Package "mdadm"
+# Date          :   11.10.2018
 #---------------------------------------------#
+# Informations Complémentaires
 #---------------------------------------------#
+# Autorisations requises  : Root
+# Paquets requis          : "mdadm"
+#---------------------------------------------#
+#---------------------------------------------#'
 
 # Afficher les disques durs ajoutés au système
 lsblk

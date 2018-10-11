@@ -1,13 +1,19 @@
+'#---------------------------------------------#
 #---------------------------------------------#
+# Informations Générales
 #---------------------------------------------#
-# Auteur        :   Michel Cruz
-# Goal          :   Mount RAID 0
+# Auteur        :   Elie Platrier
+# Sources       :   Michel Cruz
+# Objectif      :   Montage automatisé du RAID 0
 # Version       :   1.0
-#
-# Precondition  :   Root
-#                   Package "mdadm"
+# Date          :   11.10.2018
 #---------------------------------------------#
+# Informations Complémentaires
 #---------------------------------------------#
+# Autorisations requises  : Root
+# Paquets requis          : "mdadm"
+#---------------------------------------------#
+#---------------------------------------------#'
 
 # Afficher les disques durs ajoutés au système
 lsblk
