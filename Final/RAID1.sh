@@ -20,28 +20,28 @@
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
-echo Création d\‘un périphérique RAID 1 dans le dossier "dev"
+echo 1. Création d\‘un périphérique RAID 1 dans le dossier "dev"
 mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/xvdh /dev/xvdf
 
-echo Formatage du système de fichiers du RAID en ext4
+echo 2. Formatage du système de fichiers du RAID en ext4
 mkfs -t ext4 /dev/md0
 
-echo Création d\'un dossier "RAID1" dans "/mnt" qui comportera le système de fichiers du RAID
+echo 3. Création d\'un dossier "RAID1" dans "/mnt" qui comportera le système de fichiers du RAID
 mkdir -p /mnt/RAID1
 
-echo Montage du RAID dans le dossier "/mnt/RAID1"
+echo 4. Montage du RAID dans le dossier "/mnt/RAID1"
 mount /dev/md0 /mnt/RAID1
 
-echo Récupération du PATH du RAID et de son UUID
+echo 5. Récupération du PATH du RAID et de son UUID
 MountPoint=/mnt/RAID1
 UUIDmd0=$(blkid -s UUID -o value /dev/md0)
 
-echo Afin de rendre le point de montage persistant
+echo 6. Rendre le point de montage persistant
 tofstab="UUID=$UUIDmd0 $MountPoint ext4 defaults,nofail 0 2"
 echo $tofstab >> /etc/fstab
 
-echo Rendre le raid peristant en cas de redémarrage
+echo 7. Rendre le raid peristant en cas de redémarrage
 mdadm --verbose --detail --scan >> /etc/mdadm.confs
 
-echo Vérification du niveau du RAID et le nombre de disques durs actifs
+echo 8. Vérification du niveau du RAID et le nombre de disques durs actifs
 mdadm --detail /dev/md0
