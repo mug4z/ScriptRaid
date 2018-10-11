@@ -1,26 +1,27 @@
 #!/bin/bash
 
-: '
-***********************************************************************
-* Project           : STO1 Raid
-*
-* Program name      : RAID1.sh
-*
-* Program version   : 1.0
-*
-* Author            : Timothee Frily
-*
-* Date created      : 08/10/2018
-*
-* Purpose           : The user can create raid1
-*
-* Revision History  :
-*
-* Date           Author         Revision (Date in DDMMYYY format)
-* 08/10/2018   Timothee       Create the script
-*
-|**********************************************************************
-'
+'-----------------------------------------------------------------------
+ -----------------------------------------------------------------------
+ Project           : STO1 Raid
+
+ Program name      : RAID1.sh
+
+ Program version   : 1.0
+
+ Author            : Timothee Frily
+
+ Date created      : 08/10/2018
+
+ Purpose           : The user can create raid1
+
+ Revision History  :
+
+ Date           Author         Revision (Date in DDMMYYY format)
+ 08/10/2018   Timothee       Create the script
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------'
+
 
 # Afficher les disques durs ajoutés au système
 #lsblk
