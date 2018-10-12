@@ -21,7 +21,7 @@
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
-echo 1. Affichage des disques durs et des partitions
+echo 1. Affichage des volumes
 lsblk
 
 read -p "2. Sélectionnez le RAID a supprimé (ex.: md127) : " md
@@ -49,10 +49,20 @@ mdadm --remove /dev/$md
 
 sleep 1
 
-echo 6. Suppression des SuperBlocks sur les diques
-mdadm --zero-superblock /dev/xvdh /dev/xvdf
+echo 6. Sélectionnez les volumes de l\'ancien RAID pour supprimer les SuperBlocks
+lsblk
+
+read -p "Veuillez choisir le premier volume : " disk_1
+read -p "Veuillez choisir le deuxième volume : " disk_2
+read -p "Veuillez choisir le troisième volume : " disk_3
+read -p "Veuillez choisir le quatrième volume : " disk_4
 
 sleep 1
 
-echo 7. Vérification de la suppression des SuperBlocks
-mdadm -E /dev/xvdh /dev/xvdf
+echo 7. Suppression des SuperBlocks sur les volumes
+mdadm --zero-superblock /dev/$disk_1 /dev/$disk_2 /dev/$disk_3 /dev/$disk_4
+
+sleep 1
+
+echo 8. Vérification de la suppression des SuperBlocks
+mdadm -E /dev/$disk_1 /dev/$disk_2 /dev/$disk_3 /dev/$disk_4
