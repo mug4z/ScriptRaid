@@ -37,7 +37,7 @@ mkdir -p /mnt/RAID0
 sleep 1
 
 echo 4. Montage du RAID dans le dossier "/mnt/RAID0"
-# mount /dev/md0 /mnt/RAID0
+mount /dev/md0 /mnt/RAID0
 
 sleep 1
 
