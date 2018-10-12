@@ -60,3 +60,12 @@ sleep 1
 
 echo 8. Vérification du niveau du RAID et le nombre de disques durs actifs
 mdadm --detail /dev/md0
+
+sleep 1
+
+read -p "10. Redémarrez l\'ordinateur pour terminer la mise en place du RAID (o/n) :" confirm
+  if [ $check = 'o' ]; then
+    reboot
+  else
+    echo 'Il est possible que le RAID ne soit pas monté. Il est conseillé de rédmarrer votre machine'
+  fi
