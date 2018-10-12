@@ -11,6 +11,7 @@
 # Author         : Timothee Frily
 #                  Michel Cruz
 #                  Elie Platrier
+#                  Adriana Mota
 #
 # Purpose        : The user can create RAID 10
 #
@@ -23,25 +24,39 @@
 echo 1. Création d\‘un périphérique RAID 10 dans le dossier "dev"
 mdadm --create /dev/md0 --level=10 --raid-devices=4 /dev/xvdh /dev/xvdf /dev/xvdi /dev/xvdg
 
+sleep 1
+
 echo 2. Formatage du système de fichiers du RAID en ext4
 mkfs -t ext4 /dev/md0
+
+sleep 1
 
 echo 3. Création d\'un dossier "RAID10" dans "/mnt" qui comportera le système de fichiers du RAID
 mkdir -p /mnt/RAID10
 
+sleep 1
+
 echo 4. Montage du RAID dans le dossier "/mnt/RAID10"
 mount /dev/md0 /mnt/RAID10
+
+sleep 1
 
 echo 5. Récupération du PATH du RAID et de son UUID
 MountPoint=/mnt/RAID10
 UUIDmd0=$(blkid -s UUID -o value /dev/md0)
 
+sleep 1
+
 echo 6. Rendre le point de montage persistant
 tofstab="UUID=$UUIDmd0 $MountPoint ext4 defaults,nofail 0 2"
 echo $tofstab >> /etc/fstab
 
+sleep 1
+
 echo 7. Rendre le raid peristant en cas de redémarrage
 mdadm --verbose --detail --scan >> /etc/mdadm.confs
+
+sleep 1
 
 echo 8. Vérification du niveau du RAID et le nombre de disques durs actifs
 mdadm --detail /dev/md0
