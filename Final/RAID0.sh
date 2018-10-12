@@ -19,7 +19,7 @@
 #
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
-
+-
 echo 1. Création d\‘un périphérique RAID 0 dans le dossier "dev"
 mdadm --create /dev/md0 --level=stripe --raid-devices=2 /dev/xvdh /dev/xvdf
 
