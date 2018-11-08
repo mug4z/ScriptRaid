@@ -29,23 +29,23 @@ read -p "2. Sélectionnez le RAID a supprimé (ex.: md127) : " md
 sleep 1
 
 echo 3. Suppression de RAID
-UUIDmd=$(blkid -s UUID -o value /dev/$md)
+UUIDmd=$(blkid -s UUID -o value /dev/"$md")
 sed -i "/${UUIDmd}/d" /etc/fstab
 
 sleep 1
 
 echo 4. Démontage du RAID
-umount /dev/$md
+umount /dev/"$md"
 
 sleep 1
 
 echo 5. Arrêt des partitions et suppression du RAID
-mdadm --stop /dev/$md
+mdadm --stop /dev/"$md"
 
 sleep 1
 
 echo 5. Confirmation de la suppression du RAID
-mdadm --remove /dev/$md
+mdadm --remove /dev/"$md"
 
 sleep 1
 
@@ -60,9 +60,9 @@ read -p "Veuillez choisir le quatrième volume : " disk_4
 sleep 1
 
 echo 7. Suppression des SuperBlocks sur les volumes
-mdadm --zero-superblock /dev/$disk_1 /dev/$disk_2 /dev/$disk_3 /dev/$disk_4
+mdadm --zero-superblock /dev/"$disk_1" /dev/"$disk_2" /dev/"$disk_3" /dev/"$disk_4"
 
 sleep 1
 
 echo 8. Vérification de la suppression des SuperBlocks
-mdadm -E /dev/$disk_1 /dev/$disk_2 /dev/$disk_3 /dev/$disk_4
+mdadm -E /dev/"$disk_1" /dev/"$disk_2" /dev/"$disk_3" /dev/"$disk_4"

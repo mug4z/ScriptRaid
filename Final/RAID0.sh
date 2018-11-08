@@ -22,7 +22,7 @@
 # ----------------------------------------------------------------------
 
 echo 1. Création d\‘un périphérique RAID 0 dans le dossier "dev"
-mdadm --create /dev/md0 --level=stripe --raid-devices=2 /dev/xvdh /dev/xvdf
+mdadm --create /dev/md0 --level=stripe --raid-devices=2 /dev/xvdc /dev/xvdf
 
 sleep 1
 
@@ -64,7 +64,7 @@ mdadm --detail /dev/md0
 sleep 1
 
 read -p "10. Redémarrez l\'ordinateur pour terminer la mise en place du RAID (o/n) :" confirm
-  if [ $check = 'o' ]; then
+  if [ $confirm = 'o' ]; then
     reboot
   else
     echo 'Il est possible que le RAID ne soit pas monté. Il est conseillé de rédmarrer votre machine'
