@@ -56,7 +56,7 @@ if [[ -z $pipCheck ]]; then
  curl -O https://bootstrap.pypa.io/get-pip.py
  echo Installation de pip
  chmod +x get-pip.py
- python ./get-pip.py --user
+ python get-pip.py
 
  #Vérifie si l'installation c'est bien passé
  CheckInstallationPackage pip
@@ -94,7 +94,7 @@ clear
  source ~/.bashrc
 
 echo "----Test si la commande a bien été ajouté au .bashrc------"
-awsGOOD=$(aws)
-if [[ -z  ]]; then
-  #statements
+awsGOOD=$( aws )
+if [[ -z $awsGOOD ]]; then
+
 fi
