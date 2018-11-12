@@ -13,7 +13,7 @@ GREEN='\033[0;32m'
 
 #Fonction pour le check de l'installation de package
 function CheckInstallationPackage {
-  installcheck=$(which $1)
+  installcheck=$(command -v  "$1")
   if [[ -z $installcheck ]]; then
     printf "${RED}Le package $1 c'est mal installé"
   else
@@ -30,7 +30,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 #----Début des vérification des package nécessaires----#
 # Check de python
-pythonCheck=$(which python)
+pythonCheck=$(command -v python)
 if [[ -z $pythonCheck ]]; then
   echo "python n'est pas installé"
   echo installation de python
@@ -42,14 +42,14 @@ else
 fi
 
 #Check de pip
-pipCheck=$(which pip)
+pipCheck=$(command -v pip)
 if [[ -z $pipCheck ]]; then
   echo "pip n'est pas installé"
   echo installation de pip
 #Va chercher le script d'installation de pip pour pouvoir installé la dernière version de pip
   curentdirectory=$(pwd)
   echo "Téléchargement du script d'installation de pip dans $curentdirectory"
-  curlCheck=$(which curl)
+  curlCheck=$(command -v curl)
   if [[ -z $curlCheck ]]; then
     apt-get install curl
   fi
@@ -91,10 +91,13 @@ clear
  #Permet ensuite de pouvoir lancé la commande aws depuis n'importe ou sans spécifier tout le chemin
  echo  "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 
+# source=~/.bashrc
  source ~/.bashrc
 
 echo "----Test si la commande a bien été ajouté au .bashrc------"
 awsGOOD=$( aws )
 if [[ -z $awsGOOD ]]; then
-
+  echo "Aws n'est pas bien installer"
+else
+  echo "Aws est bien installer"
 fi
