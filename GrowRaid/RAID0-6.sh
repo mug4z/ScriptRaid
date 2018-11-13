@@ -20,7 +20,7 @@
 # ----------------------------------------------------------------------
 
 # Create symbolic link
-ln -s /mnt/RAID0 ./RAID
+ln -s /mnt/RAID0 /RAID
 
 # Put mountpoint in readonly
 umount /mnt/RAID0
@@ -29,19 +29,17 @@ mount -o ro /dev/md126 /mnt/RAID0
 read -p "Continue ?"
 
 # Backup in s3
-aws s3 cp /mnt/RAID0 s3://raidevolution.actualit.info --recursive
+aws s3 cp /RAID s3://raidevolution.actualit.info --recursive
 
+read -p "Continue"
+
+# Transfer from raid 0 to raid 6
+sudo rsync -a  /RAID/. /mnt/RAID6
 
 read -p "Continue ?"
 
-
-
 # Create hash for folder mountpoint raid0
 sudo find /mnt/RAID0/ -type f -exec md5sum {} + | sort > /dev/null 2> raid0.txt
-
-read -p "Continue"
-# Transfer from raid 0 to raid 6
-sudo rsync -a  /mnt/RAID0 /mnt/RAID6
 
 read -p "Continue ?"
 
@@ -52,13 +50,14 @@ sudo find /mnt/RAID6/ -type f -exec md5sum {} + | sort > /dev/null 2> raid6.txt
 diff -u raid0.txt raid6.txt
 
 read -p "Continue ?"
+
+#Remove the old symbolic link
+rm /RAID
+
 #Change symbolic link
-rm RAID
-ln -s /mnt/RAID6
+ln -s /mnt/RAID6 /RAID
 
-# Archive data from raid 0
+read -p "Continue ?"
 
-
-# Put the archive in Glacier
-
-# Check if all the data are there
+#Unmount the old raid array
+umount /mnt/RAID0
