@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Get the json file
 aws s3api get-bucket-lifecycle-configuration --bucket raidevolution.actualit.info
 # Puts json file

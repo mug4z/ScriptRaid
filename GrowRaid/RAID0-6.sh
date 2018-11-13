@@ -20,21 +20,22 @@
 # ----------------------------------------------------------------------
 
 # Create symbolic link
-ln -s /mnt/RAID0 /RAID
+sudo ln -s /mnt/RAID0 RAID
 
 # Put mountpoint in readonly
-umount /mnt/RAID0
-mount -o ro /dev/md126 /mnt/RAID0
+sudo umount /mnt/RAID0
+sudo mount -o ro /dev/md127 /mnt/RAID0
 
-read -p "Continue ?"
+ read -p
 
 # Backup in s3
-aws s3 cp /RAID s3://raidevolution.actualit.info --recursive
+aws s3 cp RAID s3://raidevolution.actualit.info/raidevolutionbackup/ --recursive
 
-read -p "Continue"
+read -p "Backup s3 Continue" void
 
 # Transfer from raid 0 to raid 6
-sudo rsync -a  /RAID/. /mnt/RAID6
+chmod
+sudo rsync -a  RAID/. /mnt/RAID6
 
 read -p "Continue ?"
 
@@ -49,15 +50,15 @@ sudo find /mnt/RAID6/ -type f -exec md5sum {} + | sort > /dev/null 2> raid6.txt
 # Compare the two hashes to check if all file are there
 diff -u raid0.txt raid6.txt
 
-read -p "Continue ?"
+read -p "Continue ?" void
 
 #Remove the old symbolic link
-rm /RAID
+rm RAID
 
 #Change symbolic link
-ln -s /mnt/RAID6 /RAID
+ln -s /mnt/RAID6 RAID
 
-read -p "Continue ?"
+read -p "Continue ?" void
 
 #Unmount the old raid array
 umount /mnt/RAID0
